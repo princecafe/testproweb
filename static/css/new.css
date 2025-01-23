@@ -1,0 +1,101 @@
+/* 父容器的样式 */
+.image-compare-container {
+    position: relative;
+    display: flex;
+    flex-direction: column; /* 垂直排列，图片在上，滑动条在下 */
+    align-items: center;
+    width: calc(100% - 40px); /* 宽度为父容器宽度，留出左右间隔 */
+    margin: 20px auto; /* 上下留间隔并居中 */
+    gap: 20px; /* 图片和滑动条之间的间距 */
+  }
+  
+  /* 图片容器 */
+  .image-wrapper {
+    position: relative;
+    width: 100%; /* 宽度适配父容器 */
+    max-width: 800px; /* 限制最大宽度 */
+    aspect-ratio: 1; /* 保持宽高比（大部分图片使用常见比例） */
+    overflow: hidden; /* 确保遮罩效果生效 */
+  }
+  
+  /* 图片样式 */
+  .image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 拉伸小图片到容器大小，保持宽高比裁剪 */
+  }
+  
+  /* 原始图像（底层） */
+  .original {
+    z-index: 1; /* 放在下层 */
+  }
+  
+  /* SR 图像（上层） */
+  .sr {
+    z-index: 2; /* 放在上层 */
+    clip-path: inset(0 50% 0 0); /* 遮罩初始显示左半部分 */
+    transition: clip-path 0.3s ease; /* 平滑过渡效果 */
+  }
+  
+  /* 标签样式 */
+.image-label {
+    position: absolute;
+    bottom: 10px; /* 标签放在图片底部 */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.5); /* 半透明黑色背景 */
+    color: white; /* 文本颜色 */
+    padding: 5px 10px; /* 标签内边距 */
+    border-radius: 5px; /* 标签圆角 */
+    font-size: 14px; /* 标签字体大小 */
+    font-weight: bold; /* 标签字体加粗 */
+    pointer-events: none; /* 防止标签干扰鼠标操作 */
+  }
+  
+  /* 原始图像标签 */
+  .original-label {
+    z-index: 1; /* 保证标签位于原始图像上层 */
+  }
+  
+  /* SR 图像标签 */
+  .sr-label {
+    z-index: 2; /* 保证标签位于 SR 图像上层 */
+  }
+
+  /* 滑动条样式 */
+  .slider-wrapper {
+    width: 100%; /* 滑动条与图片宽度一致 */
+    max-width: 800px; /* 限制最大宽度 */
+    display: flex;
+    justify-content: center;
+  }
+  
+  .slider {
+    width: 80%; /* 滑动条宽度（可以根据需求调整） */
+    height: 8px; /* 滑动条高度 */
+    border-radius: 4px; /* 圆角 */
+    background-color: #ddd; /* 滑动条背景 */
+    -webkit-appearance: none; /* 去除默认样式 */
+    appearance: none;
+  }
+  
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* 去除默认样式 */
+    appearance: none;
+    width: 20px; /* 滑块宽度 */
+    height: 20px; /* 滑块高度 */
+    border-radius: 50%; /* 圆形滑块 */
+    background: #007bff; /* 滑块颜色 */
+    cursor: pointer; /* 鼠标指针样式 */
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #007bff;
+    cursor: pointer;
+  }
